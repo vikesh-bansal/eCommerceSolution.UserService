@@ -23,6 +23,7 @@ builder.Services.AddAutoMapper(typeof(ApplicationUserMappingProfile).Assembly); 
 //Add swagger generation services to create swagger specificication
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddEndpointsApiExplorer();
 //Add cors Services
 builder.Services.AddCors(options =>
 {
@@ -38,10 +39,10 @@ app.UseExceptionHandlingMiddleware();
 app.UseRouting();
 app.UseSwagger(); // Adds endpoint that can server the swagger.json
 app.UseSwaggerUI();// Adds swagger UI (interactive page to explore the test API endpoints)
-
 app.UseCors(); // Allow application with different domain can use this API or we enable this for Angular
 
 //Auth
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
